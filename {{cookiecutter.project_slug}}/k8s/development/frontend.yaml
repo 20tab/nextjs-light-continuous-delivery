@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: development-{{cookiecutter.project_slug}}-frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: development-{{cookiecutter.project_slug}}-frontend
+  template:
+    metadata:
+      labels:
+        component: development-{{cookiecutter.project_slug}}-frontend
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: frontend
+          image: {{cookiecutter.docker_image_registry}}/frontend:__IMAGE_TAG__
+          ports:
+            - containerPort: 3000
+          # env:
+          #   - name: API_URL
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: development-{{cookiecutter.project_slug}}-secrets
+          #         key: API_URL
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: development-{{cookiecutter.project_slug}}-frontend-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    component: development-{{cookiecutter.project_slug}}-frontend
+  ports:
+    - port: 3000
+      targetPort: 3000
