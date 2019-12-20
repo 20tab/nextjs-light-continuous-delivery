@@ -1,6 +1,6 @@
 import React from 'react'
 
-import logo from '../images/logo.svg'
+import logo from '../../images/logo.svg'
 import { Container, Logo } from './style'
 
 export default _ => {
