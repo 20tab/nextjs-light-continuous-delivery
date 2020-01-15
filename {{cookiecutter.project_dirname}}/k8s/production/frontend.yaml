@@ -16,7 +16,7 @@ spec:
         - name: regcred
       containers:
         - name: frontend
-          image: {{cookiecutter.docker_image_registry}}/frontend:__IMAGE_TAG__
+          image: DOCKER_IMAGE_REGISTRY/frontend:__IMAGE_TAG__
           ports:
             - containerPort: 3000
           # env:
