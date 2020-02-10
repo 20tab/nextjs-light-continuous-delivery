@@ -1,6 +1,8 @@
+image: node
+
 stages:
+  - test
   - build
-  - deploy
   - deploy
 
 cache:
