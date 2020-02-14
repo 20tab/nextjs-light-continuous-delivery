@@ -16,7 +16,7 @@ spec:
         - name: regcred
       containers:
         - name: frontend
-          image: DOCKER_IMAGE_REGISTRY/frontend:__IMAGE_TAG__
+          image: registry.gitlab.com/{{cookiecutter.project_slug}}/{{cookiecutter.project_dirname}}:__IMAGE_TAG__
           ports:
             - containerPort: 3000
           # env:
