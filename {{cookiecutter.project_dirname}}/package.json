@@ -18,7 +18,7 @@
     "styled-components": "^4.4.1"
   },
   "scripts": {
-    "start": "npm run env && react-scripts start",
+    "start": "yarn run env && react-scripts start",
     "build": "react-scripts build",
     "env": "./bin/generate_runtime_env.sh && mv ./env-config.js ./public/env-config.js",
     "test": "react-scripts test",

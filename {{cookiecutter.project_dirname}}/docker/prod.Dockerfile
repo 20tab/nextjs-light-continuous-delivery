@@ -7,11 +7,11 @@ COPY ./package.json .
 
 COPY ./yarn.lock .
 
-RUN npm install
+RUN yarn install
 
 COPY . .
 
-RUN npm run build
+RUN yarn run build
 
 # Production image
 FROM nginx
