@@ -1,5 +1,5 @@
 # Build image
-FROM node:12.13.1 as builder
+FROM node:12 as builder
 
 WORKDIR /app
 
@@ -14,7 +14,7 @@ COPY . .
 RUN yarn run build
 
 # Production image
-FROM nginx
+FROM nginx:1.16
 
 EXPOSE 3000
 
