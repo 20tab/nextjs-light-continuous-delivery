@@ -1,16 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: integration-{{cookiecutter.project_slug}}-frontend-deployment
+  name: frontend-deployment
+  namespace: {{cookiecutter.project_slug}}-integration
 spec:
   replicas: 1
   selector:
     matchLabels:
-      component: integration-{{cookiecutter.project_slug}}-frontend
+      component: frontend
   template:
     metadata:
       labels:
-        component: integration-{{cookiecutter.project_slug}}-frontend
+        component: frontend
     spec:
       imagePullSecrets:
         - name: regcred
@@ -23,7 +24,7 @@ spec:
           #   - name: API_URL
           #     valueFrom:
           #       secretKeyRef:
-          #         name: integration-{{cookiecutter.project_slug}}-secrets
+          #         name: secrets
           #         key: API_URL
 
 ---
@@ -31,11 +32,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: integration-{{cookiecutter.project_slug}}-frontend-cluster-ip-service
+  name: frontend-cluster-ip-service
+  namespace: {{cookiecutter.project_slug}}-integration
 spec:
   type: ClusterIP
   selector:
-    component: integration-{{cookiecutter.project_slug}}-frontend
+    component: frontend
   ports:
     - port: 3000
       targetPort: 3000
