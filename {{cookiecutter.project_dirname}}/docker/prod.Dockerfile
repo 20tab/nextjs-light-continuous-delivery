@@ -24,7 +24,7 @@ COPY --from=builder /app/build /usr/share/nginx/html
 
 WORKDIR /usr/share/nginx/html
 
-COPY ./bin/generate_runtime_env.sh .
+COPY ./scripts/generate_runtime_env.sh .
 
 RUN chmod +x ./generate_runtime_env.sh
 
