@@ -1,31 +1,37 @@
 # Build image
 FROM node:12 as builder
 
-WORKDIR /app
+WORKDIR /
 
-COPY ./package.json .
+COPY package.json .
 
-COPY ./yarn.lock .
+COPY yarn.lock .
 
 RUN yarn install
 
-COPY . .
+WORKDIR /app
 
-RUN yarn run build
+COPY src ./src
+
+COPY webpack ./webpack
+
+COPY .babelrc .
+
+RUN /node_modules/.bin/webpack --config webpack/webpack.prod.js
+
+RUN npm prune --production
 
 # Production image
-FROM nginx:1.16
+FROM node:12
 
-EXPOSE 3000
+WORKDIR /app
 
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /app/src/server /app
 
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=builder /package.json /app/package.json
 
-WORKDIR /usr/share/nginx/html
+COPY --from=builder /yarn.lock /app/yarn.lock
 
-COPY ./scripts/generate_runtime_env.sh .
+RUN yarn install --production
 
-RUN chmod +x ./generate_runtime_env.sh
-
-CMD ["/bin/bash", "-c", "/usr/share/nginx/html/generate_runtime_env.sh && nginx -g \"daemon off;\""]
+CMD [ "node", "/app/index.js"]

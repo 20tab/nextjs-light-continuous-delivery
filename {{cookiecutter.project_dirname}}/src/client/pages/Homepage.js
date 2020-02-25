@@ -1,6 +1,15 @@
+import React from 'react'
 import styled, { keyframes } from 'styled-components'
 
-export const Container = styled.div`
+export default () => {
+  return (
+    <Container>
+      <Logo data-testid='logo' src='/public/img/logo.svg' alt='logo' />
+    </Container>
+  )
+}
+
+const Container = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -18,7 +27,7 @@ const rotate = keyframes`
   }
 `
 
-export const Logo = styled.img`
+const Logo = styled.img`
   height: 40vmin;
   pointer-events: none;
   animation: ${rotate} infinite 20s linear;

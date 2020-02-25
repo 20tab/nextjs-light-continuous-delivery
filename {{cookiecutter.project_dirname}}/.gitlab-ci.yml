@@ -1,7 +1,6 @@
 image: node
 
 stages:
-  - test
   - build
   - deploy
 
@@ -9,14 +8,6 @@ cache:
   paths:
     - node_modules/
     - .yarn
-
-test:
-  stage: test
-  before_script:
-    - yarn config set cache-folder .yarn
-    - yarn install
-  script:
-    - yarn test --watchAll=false --color=true
 
 build:
   stage: build

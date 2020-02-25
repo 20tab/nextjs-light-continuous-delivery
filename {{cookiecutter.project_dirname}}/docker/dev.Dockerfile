@@ -1,6 +1,6 @@
 FROM node:12
 
-WORKDIR /app
+WORKDIR /
 
 COPY ./package.json .
 
@@ -8,4 +8,6 @@ COPY ./yarn.lock .
 
 RUN yarn install
 
-CMD ["yarn", "run", "start"]
+WORKDIR /app
+
+CMD ["yarn", "run", "dev"]

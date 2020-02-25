@@ -1,7 +1,17 @@
+import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-export const Container = styled.div`
+export default () => {
+  return (
+    <Container>
+      <Title>404 ~ page not found!</Title>
+      <StyledLink to='/'>Go to homepage</StyledLink>
+    </Container>
+  )
+}
+
+const Container = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -10,12 +20,12 @@ export const Container = styled.div`
   align-items: center;
 `
 
-export const Title = styled.h1`
+const Title = styled.h1`
   margin-top: 0px;
   text-transform: uppercase;
 `
 
-export const StyledLink = styled(Link)`
+const StyledLink = styled(Link)`
   display: block;
   position: relative;
   z-index: 1;

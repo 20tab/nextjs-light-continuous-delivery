@@ -1,1 +1,1 @@
-REACT_API_URL=https://www.20tab.com
+NODE_ENV=development
