@@ -1,27 +1,49 @@
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# START https://github.com/github/gitignore/blob/master/Python.gitignore
 
-# testing
-/coverage
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
 
-# production
-/build
-src/server/public/css
-src/server/public/js
-src/server/public/html
+# Sphinx documentation
+docs/_build/
 
-# misc
-.DS_Store
+# Environments
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-package-lock.json
-env-config.js
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# Pyre type checker
+.pyre/
+
+# END https://github.com/github/gitignore/blob/master/Python.gitignore
+
+# JetBrains
+.idea/
+
+# Eclipse / Kate
+*.swp
+
+# SublimeText
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+[._]*.un~
+
+# VisualStudioCode
+.vscode/
+
+# macOS
+.DS_Store
