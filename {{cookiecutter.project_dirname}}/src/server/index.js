@@ -46,7 +46,9 @@ app.use('/robots.txt', express.static(path.resolve(__dirname, './public/files/ro
 app.get('*', (req, res) => {
   res.render('index', {
     layout: false,
-    NODE_ENV: process.env.NODE_ENV
+    ENV: {
+      NODE_ENV: process.env.NODE_ENV
+    }
   })
 })
 
