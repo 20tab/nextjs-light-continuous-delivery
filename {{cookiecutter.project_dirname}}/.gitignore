@@ -9,7 +9,7 @@
 # build
 src/server/public/html
 src/server/public/css
-src/server/public/img
+src/server/public/js
 
 # misc
 .DS_Store
