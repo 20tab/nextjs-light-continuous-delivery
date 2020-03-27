@@ -45,5 +45,11 @@
     "webpack-dev-middleware": "3.7.2",
     "webpack-hot-middleware": "2.25.0",
     "webpack-merge": "4.2.2"
+  },
+  "resolutions": {
+    "**/**/minimist": "^1.2.2",
+    "**/**/acorn": "^7.1.1",
+    "**/**/serialize-javascript": "^2.1.1",
+    "**/**/kind-of": "^6.0.3"
   }
 }
