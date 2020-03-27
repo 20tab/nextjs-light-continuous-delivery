@@ -1,5 +1,5 @@
 const merge = require('webpack-merge')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin')
 
 const common = require('./webpack.common.js')
 
@@ -10,21 +10,23 @@ module.exports = merge.strategy({ entry: 'prepend' })(common, {
     chunkFilename: '[name].bundle.js'
   },
   optimization: {
+    minimize: true,
+    mergeDuplicateChunks: true,
     splitChunks: {
       chunks: 'all',
       maxSize: 240000 // 240KB
     }
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: '../css/[name].css'
+    new ExtractCssChunks({
+      filename: '[name].css'
     })
   ],
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
+        use: [ExtractCssChunks.loader, 'css-loader']
       }
     ]
   }
