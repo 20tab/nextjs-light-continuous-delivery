@@ -19,8 +19,6 @@ COPY .babelrc .
 
 RUN /node_modules/.bin/webpack --config webpack/webpack.prod.js
 
-RUN npm prune --production
-
 # Production image
 FROM node:12
 
