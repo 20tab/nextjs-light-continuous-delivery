@@ -6,19 +6,21 @@ import { ThemeProvider } from 'styled-components'
 import store from './store'
 import Routes from './Routes'
 import history from './store/history'
-import defaultTheme from './styles/themes/default'
+import theme from './styles/themes/light'
+import GlobalStyle from './styles/GlobalStyle'
 import ScrollToTop from './components/ScrollToTop'
 
 export default () => {
   return (
     <Provider store={store}>
-      <Router history={history} forceRefresh={false}>
-        <ThemeProvider theme={defaultTheme}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Router history={history} forceRefresh={false}>
           <ScrollToTop>
             <Routes />
           </ScrollToTop>
-        </ThemeProvider>
-      </Router>
+        </Router>
+      </ThemeProvider>
     </Provider>
   )
 }
