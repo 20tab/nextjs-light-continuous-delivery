@@ -2,9 +2,6 @@
   "name": "{{cookiecutter.project_slug}}",
   "version": "0.1.0",
   "private": true,
-  "standard": {
-    "parser": "babel-eslint"
-  },
   "scripts": {
     "dev": "/node_modules/.bin/nodemon src/server/index.js"
   },
