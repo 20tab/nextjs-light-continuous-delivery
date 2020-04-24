@@ -1,12 +1,34 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
+const basicAuth = require('express-basic-auth')
 const compression = require('compression')
 const path = require('path')
 
 const app = express()
 
-// Use compression if env is production
 if (process.env.NODE_ENV === 'production') {
+  // Use basic auth
+  if ((
+    process.env.DJANGO_CONFIGURATION === 'Development' ||
+    process.env.DJANGO_CONFIGURATION === 'Integration' ||
+    process.env.DJANGO_CONFIGURATION === 'Production') &&
+    process.env.BASIC_AUTH_USER &&
+    process.env.BASIC_AUTH_PASSWORD
+  ) {
+    app.use(basicAuth({
+      challenge: true,
+      authorizeAsync: true,
+      authorizer: (username, password, cb) => {
+        if (username === process.env.BASIC_AUTH_USER && password === process.env.BASIC_AUTH_PASSWORD) {
+          return cb(null, true)
+        } else {
+          return cb(null, false)
+        }
+      }
+    }))
+  }
+
+  // Use compression
   app.use(compression())
 }
 

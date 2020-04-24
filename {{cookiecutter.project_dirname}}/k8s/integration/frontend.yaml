@@ -31,6 +31,16 @@ spec:
                 secretKeyRef:
                   name: secrets
                   key: DJANGO_CONFIGURATION
+            - name: BASIC_AUTH_USER
+              valueFrom:
+                secretKeyRef:
+                  name: secrets
+                  key: BASIC_AUTH_USER
+            - name: BASIC_AUTH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secrets
+                  key: BASIC_AUTH_PASSWORD
 
 ---
 
