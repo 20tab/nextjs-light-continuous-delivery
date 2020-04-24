@@ -40,7 +40,17 @@ if (process.env.NODE_ENV !== 'production') {
 
 // Serve static files
 app.use('/public', express.static(path.resolve(__dirname, './public')))
-app.use('/robots.txt', express.static(path.resolve(__dirname, './public/files/robots.txt')))
+
+// Serve robots.txt
+let robotsPath = './public/files/robots_alpha.txt'
+
+if (process.env.DJANGO_CONFIGURATION === 'Integration') {
+  robotsPath = './public/files/robots_integration.txt'
+} else if (process.env.DJANGO_CONFIGURATION === 'Production') {
+  robotsPath = './public/files/robots_production.txt'
+}
+
+app.use('/robots.txt', express.static(path.resolve(__dirname, robotsPath)))
 
 // Serve always index.hbs
 app.get('*', (req, res) => {

@@ -26,6 +26,11 @@ spec:
                 secretKeyRef:
                   name: secrets
                   key: NODE_ENV
+            - name: DJANGO_CONFIGURATION
+              valueFrom:
+                secretKeyRef:
+                  name: secrets
+                  key: DJANGO_CONFIGURATION
 
 ---
 
