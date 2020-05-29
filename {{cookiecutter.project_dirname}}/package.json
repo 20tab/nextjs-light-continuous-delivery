@@ -1,6 +1,6 @@
 {
-  "name": "react-continuous-delivery",
-  "version": "0.1.0",
+  "name": "{{cookiecutter.project_slug}}",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "/node_modules/.bin/nodemon src/server/index.js"
@@ -19,8 +19,17 @@
     "@babel/preset-env": "^7.10.1",
     "@babel/preset-react": "^7.10.1",
     "axios": "^0.19.2",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.5.3",
+    "eslint": "^7.1.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-config-standard-react": "^9.2.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-standard": "^4.0.1",
     "extract-css-chunks-webpack-plugin": "^4.7.5",
     "file-loader": "^6.0.0",
     "history": "^4.10.1",
