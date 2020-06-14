@@ -1,5 +1,5 @@
 # Build image
-FROM node:12 as builder
+FROM node:12-slim as builder
 
 WORKDIR /
 
@@ -20,7 +20,7 @@ COPY .babelrc .
 RUN /node_modules/.bin/webpack --config webpack/webpack.prod.js
 
 # Production image
-FROM node:12
+FROM node:12-slim
 
 WORKDIR /app
 
