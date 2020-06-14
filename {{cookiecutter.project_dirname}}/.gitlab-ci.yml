@@ -15,11 +15,9 @@ build:
     - develop
     - master
     - tags
-  image: docker:18-git
+  image: docker:19-git
   services:
-    - docker:18-dind
-  variables:
-    DOCKER_DRIVER: "overlay"
+    - docker:19-dind
   before_script:
     - "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY"
   script:
@@ -30,7 +28,9 @@ build:
 
 .deploy:
   stage: deploy
-  image: lucj/kubectl:1.15.2
+  image:
+    name: bitnami/kubectl:1.17
+    entrypoint: [""]
   before_script:
     - kubectl config set-cluster my-cluster --server=${KUBE_URL} --certificate-authority="${KUBE_CA_PEM_FILE}"
     - kubectl config set-credentials admin --token=${KUBE_TOKEN}
