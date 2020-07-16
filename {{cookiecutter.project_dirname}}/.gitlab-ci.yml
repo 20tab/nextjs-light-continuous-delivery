@@ -11,10 +11,6 @@ cache:
 
 build:
   stage: build
-  only:
-    - develop
-    - master
-    - tags
   image: docker:19-git
   services:
     - docker:19-dind
@@ -25,6 +21,9 @@ build:
     - "docker push $CI_REGISTRY/$CI_PROJECT_PATH:$CI_COMMIT_REF_NAME-$CI_COMMIT_SHA"
   after_script:
     - "docker logout $CI_REGISTRY"
+  only:
+    - develop
+    - master
 
 .deploy:
   stage: deploy
@@ -43,7 +42,7 @@ deploy_development:
     - develop
   environment: development
   script:
-    - sed -i "s/__IMAGE_TAG__/$CI_COMMIT_REF_NAME-$CI_COMMIT_SHA/" k8s/development/frontend.yaml
+    - sed -i "s/__IMAGE_TAG__/develop-$CI_COMMIT_SHA/" k8s/development/frontend.yaml
     - kubectl apply -f k8s/development/frontend.yaml
 
 rollback_development:
@@ -53,7 +52,7 @@ rollback_development:
   environment: development
   when: manual
   script:
-    - sed -i "s/__IMAGE_TAG__/$CI_COMMIT_REF_NAME-$CI_COMMIT_BEFORE_SHA/" k8s/development/frontend.yaml
+    - sed -i "s/__IMAGE_TAG__/develop-$CI_COMMIT_BEFORE_SHA/" k8s/development/frontend.yaml
     - kubectl apply -f k8s/development/frontend.yaml
 
 deploy_integration:
@@ -62,7 +61,7 @@ deploy_integration:
     - master
   environment: integration
   script:
-    - sed -i "s/__IMAGE_TAG__/$CI_COMMIT_REF_NAME-$CI_COMMIT_SHA/" k8s/integration/frontend.yaml
+    - sed -i "s/__IMAGE_TAG__/master-$CI_COMMIT_SHA/" k8s/integration/frontend.yaml
     - kubectl apply -f k8s/integration/frontend.yaml
 
 rollback_integration:
@@ -72,7 +71,7 @@ rollback_integration:
   environment: integration
   when: manual
   script:
-    - sed -i "s/__IMAGE_TAG__/$CI_COMMIT_REF_NAME-$CI_COMMIT_BEFORE_SHA/" k8s/integration/frontend.yaml
+    - sed -i "s/__IMAGE_TAG__/master-$CI_COMMIT_BEFORE_SHA/" k8s/integration/frontend.yaml
     - kubectl apply -f k8s/integration/frontend.yaml
 
 deploy_production:
@@ -81,7 +80,7 @@ deploy_production:
     - tags
   environment: production
   script:
-    - sed -i "s/__IMAGE_TAG__/$CI_COMMIT_REF_NAME-$CI_COMMIT_SHA/" k8s/production/frontend.yaml
+    - sed -i "s/__IMAGE_TAG__/master-$CI_COMMIT_SHA/" k8s/production/frontend.yaml
     - kubectl apply -f k8s/production/frontend.yaml
 
 rollback_production:
@@ -91,5 +90,5 @@ rollback_production:
   environment: production
   when: manual
   script:
-    - sed -i "s/__IMAGE_TAG__/$CI_COMMIT_REF_NAME-$CI_COMMIT_BEFORE_SHA/" k8s/production/frontend.yaml
+    - sed -i "s/__IMAGE_TAG__/master-$CI_COMMIT_BEFORE_SHA/" k8s/production/frontend.yaml
     - kubectl apply -f k8s/production/frontend.yaml

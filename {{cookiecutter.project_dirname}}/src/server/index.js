@@ -9,9 +9,9 @@ const app = express()
 if (process.env.NODE_ENV === 'production') {
   // Use basic auth
   if ((
-    process.env.DJANGO_CONFIGURATION === 'Development' ||
-    process.env.DJANGO_CONFIGURATION === 'Integration' ||
-    process.env.DJANGO_CONFIGURATION === 'Production') &&
+    process.env.REACT_ENVIRONMENT === 'Development' ||
+    process.env.REACT_ENVIRONMENT === 'Integration' ||
+    process.env.REACT_ENVIRONMENT === 'Production') &&
     process.env.BASIC_AUTH_USER &&
     process.env.BASIC_AUTH_PASSWORD
   ) {
@@ -66,9 +66,9 @@ app.use('/public', express.static(path.resolve(__dirname, './public')))
 // Serve robots.txt
 let robotsPath = './public/files/robots_alpha.txt'
 
-if (process.env.DJANGO_CONFIGURATION === 'Integration') {
+if (process.env.REACT_ENVIRONMENT === 'Integration') {
   robotsPath = './public/files/robots_integration.txt'
-} else if (process.env.DJANGO_CONFIGURATION === 'Production') {
+} else if (process.env.REACT_ENVIRONMENT === 'Production') {
   robotsPath = './public/files/robots_production.txt'
 }
 

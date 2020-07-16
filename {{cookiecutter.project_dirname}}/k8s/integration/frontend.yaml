@@ -26,11 +26,11 @@ spec:
                 secretKeyRef:
                   name: secrets
                   key: NODE_ENV
-            - name: DJANGO_CONFIGURATION
+            - name: REACT_ENVIRONMENT
               valueFrom:
                 secretKeyRef:
                   name: secrets
-                  key: DJANGO_CONFIGURATION
+                  key: REACT_ENVIRONMENT
             - name: BASIC_AUTH_USER
               valueFrom:
                 secretKeyRef:
