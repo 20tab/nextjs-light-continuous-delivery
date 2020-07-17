@@ -30,7 +30,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: secrets
-                  key: REACT_ENVIRONMENT
+                  key: DJANGO_CONFIGURATION
             - name: BASIC_AUTH_USER
               valueFrom:
                 secretKeyRef:
