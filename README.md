@@ -1,3 +1,5 @@
+DEPRECATED use the new one at https://github.com/20tab/react-ts-continuous-delivery
+
 # React continuous delivery
 
 [![Code style: black](https://img.shields.io/badge/code%20style-standardJS-F3DF49.svg)](https://standardjs.com/)
