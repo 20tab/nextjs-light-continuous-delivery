@@ -1,4 +1,4 @@
-DEPRECATED use the new one at https://github.com/20tab/react-ts-continuous-delivery
+DEPRECATED use the new one at https://github.com/20tab/nextjs-continuous-delivery
 
 # React continuous delivery
 
