@@ -1,9 +1,0 @@
-{
-  "ignore": [
-    "src/server/public/*",
-    "src/client/*",
-    ".babelrc",
-    ".gitignore",
-    "package.json"
-  ]
-}
