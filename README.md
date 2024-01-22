@@ -18,7 +18,7 @@ In order to run Talos in a virtual environment, first clone the repository in a 
 
 ```console
 cd ~/projects
-git clone git@github.com:20tab/nextjs-continuous-delivery.git talos-nextjs
+git clone git@github.com:20tab/react-continuous-delivery.git talos-nextjs
 cd talos-nextjs
 ```
 
