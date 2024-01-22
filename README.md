@@ -1,8 +1,8 @@
-# Talos Submodule - NextJS
+# Talos Submodule - NextJS Light Template
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/python/black)
 
-> A [NextJS](https://nextjs.org/) project template ready for continuous delivery.
+> A light and customizable project template ready for continuous delivery.
 
 ## 🧩 Requirements
 

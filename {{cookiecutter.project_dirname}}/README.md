@@ -2,12 +2,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 # Getting started
 
-This service is generated from [20tab standard project](https://github.com/20tab/20tab-standard-project) template or
-[20tab nextjs template](https://github.com/20tab/nextjs-continuous-delivery)
-
 ## The Kubernetes resource limits
 
-The Kubernetes deployment service limits should be adapted to the expected load of the other services and to the size of the available nodes.
+The limits for the Kubernetes deployment service should be adjusted to account for the expected load of other services and the available nodes size.
 
 ## Git
 
@@ -100,7 +97,7 @@ docker-compose up
 
 ## Using custom docker-compose implementation
 
-:warning: **env variable** in custom mode you must be sure to have env, set in the system or in `.env` file.
+:warning: All the following environment variables must be set in a local `.env` or throught your system configs
 
 ```bash
   COMPOSE_FILE=docker-compose.yaml:docker-compose/local.yaml
@@ -131,13 +128,13 @@ yarn dev
 :warning: **develop, main and tags**: should be protected!
 
 ## E2E Integration
-The E2E integration, can be skip using following variable that should be set in the GitLab respository:
+To skip the E2E integration, the following env should be set in the GitLab repository:
 ```git
   SKIP_E2E = true
 ```
 
 ## Pact broker Integration
-To enable the Pact broker integration, the following variables should be set in the GitLab respository:
+To enable the Pact broker integration, the following envs should be set in the GitLab respository:
 ```git
   PACT_ENABLED = true
   PACT_BROKER_BASE_URL (protected and masked)
@@ -156,12 +153,3 @@ To enable the Sentry integration, the following variables should be set in the G
   SENTRY_URL (protected) e.g.: https://sentry.io/
 ```
 
-# Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [Next.js functions](https://nextjs.org/docs/basic-features/data-fetching) - learn about Next.js functions.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
