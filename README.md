@@ -18,8 +18,8 @@ In order to run Talos in a virtual environment, first clone the repository in a 
 
 ```console
 cd ~/projects
-git clone git@github.com:20tab/react-continuous-delivery.git talos-nextjs
-cd talos-nextjs
+git clone git@github.com:20tab/react-continuous-delivery.git talos-nextjs-light
+cd talos-nextjs-light
 ```
 
 Then, create and activate a virtual environment and install the requirements:
@@ -54,14 +54,14 @@ cd ~/projects
 ### 🐋 Docker
 
 ```console
-docker run --interactive --tty --rm --volume $PWD/.dumps:/app/.dumps --volume $PWD/.logs:/app/.logs --volume $PWD:/data 20tab/talos-nextjs:latest
+docker run --interactive --tty --rm --volume $PWD/.dumps:/app/.dumps --volume $PWD/.logs:/app/.logs --volume $PWD:/data 20tab/talos-nextjs-light:latest
 ```
 
 ### 🐍 Virtual environment
 
 ```console
-source talos-nextjs/.venv/bin/activate
-./talos-nextjs/start.py
+source talos-nextjs-light/.venv/bin/activate
+./talos-nextjs-light/start.py
 ```
 
 ### Example
