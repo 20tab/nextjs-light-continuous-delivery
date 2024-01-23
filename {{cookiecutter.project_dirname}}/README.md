@@ -1,68 +1,155 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Available Scripts
+# Getting started
 
-In the project directory, you can run:
+## The Kubernetes resource limits
 
-### `yarn start`
+The limits for the Kubernetes deployment service should be adjusted to account for the expected load of other services and the available nodes size.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Git
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+To get the existing project, change directory, clone the project repository and enter the newly created **{{ cookiecutter.project_slug }}** directory.
 
-### `yarn test`
+## Run local service
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+First, run the development server:
 
-### `yarn build`
+```bash
+npm run dev
+```
+or
+```bash
+yarn dev
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+# Linting
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To check all file linting, execute:
 
-### `yarn eject`
+```bash
+npm run lint
+```
+or
+```bash
+yarn lint
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Update package
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To update packages, execute:
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+yarn upgrade --latest
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+To check audit, execute:
 
-## Learn More
+```bash
+npm run audit:fix
+```
+or
+```bash
+yarn audit:fix
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Testing
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Unit test
 
-### Code Splitting
+To run the unit test suite, execute:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+```bash
+npm run test
+```
+or
+```bash
+yarn test
+```
 
-### Analyzing the Bundle Size
+## Contract tests
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+To run the pact test suite, execute:
 
-### Making a Progressive Web App
+```bash
+npm run pact
+```
+or
+```bash
+yarn pact
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+# Pact stub server
+Pact contracts are easily turned into locally running API stubs.
 
-### Advanced Configuration
+## Using full docker-compose implementation
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+```bash
+npm run pact && \
+docker-compose up
+```
+or
+```bash
+yarn pact && \
+docker-compose up
+```
 
-### Deployment
+## Using custom docker-compose implementation
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+:warning: All the following environment variables must be set in a local `.env` or throught your system configs
 
-### `yarn build` fails to minify
+```bash
+  COMPOSE_FILE=docker-compose.yaml:docker-compose/local.yaml
+  COMPOSE_PROFILES=pact
+  CYPRESS_BASE_URL=https://proxy:8443
+  INTERNAL_BACKEND_URL=http://provider:8000
+  NEXT_PUBLIC_PROJECT_URL=https://localhost:8443
+  REACT_ENVIRONMENT=development
+  SERVICE_DOCKER_FILE=docker/local.Dockerfile
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+After env check you can run the following commands:
+
+```bash
+npm run pact && \
+docker-compose up provider && \
+npm run dev
+```
+or
+```bash
+yarn pact && \
+docker-compose up provider && \
+yarn dev
+```
+
+# GitLab pipeline - CI/CD
+
+:warning: **develop, main and tags**: should be protected!
+
+## E2E Integration
+To skip the E2E integration, the following env should be set in the GitLab repository:
+```git
+  SKIP_E2E = true
+```
+
+## Pact broker Integration
+To enable the Pact broker integration, the following envs should be set in the GitLab respository:
+```git
+  PACT_ENABLED = true
+  PACT_BROKER_BASE_URL (protected and masked)
+  PACT_BROKER_PASSWORD (protected)
+  PACT_BROKER_USERNAME (protected)
+```
+
+## Monitoring
+### Sentry integration
+
+To enable the Sentry integration, the following variables should be set in the GitLab respository:
+```git
+  SENTRY_AUTH_TOKEN (protected and masked) from Sentry
+  SENTRY_DSN (protected and masked) from Sentry
+  SENTRY_ORG (protected) e.g.: 20tab
+  SENTRY_URL (protected) e.g.: https://sentry.io/
+```
+
