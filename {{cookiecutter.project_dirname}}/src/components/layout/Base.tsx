@@ -2,10 +2,10 @@ import { parseCookies } from 'nookies'
 import { ThemeProvider } from 'styled-components'
 import React, { useEffect } from 'react'
 
-import { changeTheme } from '@/store/utilsSlice'
+import { changeTheme } from '@/src/store/utilsSlice'
 import { GlobalStyle } from '@/styles/GlobalStyle'
 import { Navbar } from '@/components/Navbar'
-import { useAppDispatch, useAppSelector } from '@/store'
+import { useAppDispatch, useAppSelector } from '@/src/store'
 import themes from '@/styles/themes'
 
 type Props = {

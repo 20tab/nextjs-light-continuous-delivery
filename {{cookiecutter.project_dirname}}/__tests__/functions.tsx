@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components'
 import React from 'react'
 
 import themes from '@/styles/themes'
-import store from '@/store'
+import store from '@/src/store'
 
 import type { ReactElement } from 'react'
 
