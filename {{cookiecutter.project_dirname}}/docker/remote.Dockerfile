@@ -10,14 +10,9 @@ RUN \
   elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm i; \
   else echo "Lockfile not found." && exit 1; \
   fi
-COPY components ./components
 COPY declarations ./declarations
-COPY models ./models
-COPY pages ./pages
 COPY public ./public
-COPY store ./store
-COPY styles ./styles
-COPY utils ./utils
+COPY src ./src
 COPY tsconfig.json next.config.js sentry.client.config.js sentry.server.config.js middleware.ts ./
 ARG SENTRY_AUTH_TOKEN \
   SENTRY_ORG \
