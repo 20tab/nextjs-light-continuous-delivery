@@ -1,8 +1,8 @@
 import { expect } from '@jest/globals'
 import { pactWith } from 'jest-pact/dist/v3'
 
-import { HTTPMethod } from '@/__tests__/pact/utils'
-import pactConfig from '@/__tests__/pact/pact.config'
+import { HTTPMethod } from '../utils'
+import pactConfig from '../pact.config'
 
 import { axios, withApiOptions } from '@/utils/api/axios'
 

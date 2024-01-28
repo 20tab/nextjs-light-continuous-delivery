@@ -2,7 +2,7 @@ import { expect } from '@jest/globals'
 import { screen, fireEvent } from '@testing-library/react'
 import React from 'react'
 
-import { renderWithWrappers } from '@/__tests__/functions'
+import { renderWithWrappers } from '../functions'
 import { ThemeSwitch } from '@/components/ThemeSwitch'
 
 const setup = () => renderWithWrappers(<ThemeSwitch />)
