@@ -17,7 +17,6 @@
     "@next/font": "^13.4.19",
     "@reduxjs/toolkit": "^1.9.5",
     "@sentry/nextjs": "^7.64.0",
-    "axios": "^1.4.0",
     "basic-auth": "^2.0.1",
     "express": "^4.18.2",
     "next": "^13.4.19",
