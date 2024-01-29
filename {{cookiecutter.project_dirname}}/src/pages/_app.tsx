@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import React from 'react'
 
+import '@/styles/global.css'
+
 import Layout from '@/components/layout/Base'
 
 import type { AppProps } from 'next/app'
