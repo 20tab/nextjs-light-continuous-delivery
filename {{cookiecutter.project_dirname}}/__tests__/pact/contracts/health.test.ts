@@ -4,12 +4,6 @@ import { pactWith } from 'jest-pact/dist/v3'
 import { HTTPMethod } from '../utils'
 import pactConfig from '../pact.config'
 
-import { axios, withApiOptions } from '@/utils/api/axios'
-
-const healthCheck = withApiOptions<{ status: string }>(({ baseUrl }) => {
-  return axios.get(`${baseUrl}/api/health/`)
-})
-
 pactWith(pactConfig, interaction => {
   const interactionName = 'A health check request'
   interaction(interactionName, ({ provider, execute }) => {
@@ -27,11 +21,9 @@ pactWith(pactConfig, interaction => {
         })
     })
     execute(interactionName, async mockServer => {
-      const { data, status } = await healthCheck({
-        baseUrl: mockServer.url
-      })
+      const { body, status } = await fetch(`${mockServer.url}/api/health/`)
       expect(status).toBe(204)
-      expect(data).toEqual('')
+      expect(body).toEqual('')
     })
   })
 })
