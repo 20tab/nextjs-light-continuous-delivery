@@ -1,6 +1,5 @@
 import { expect } from '@jest/globals'
-import { screen } from '@testing-library/react'
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import React from 'react'
 
 import { Navbar } from '@/components/Navbar'
