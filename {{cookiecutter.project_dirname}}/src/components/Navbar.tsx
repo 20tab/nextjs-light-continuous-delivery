@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <Image
-        src={`/images/logo-light.svg`}
+        src={`/images/logo.svg`}
         width='110'
         height='48'
         alt={'sito logo'}

@@ -15,7 +15,7 @@ const nextjsConfig = {
   swcMinify: true,
   rewrites: async () => [
     {
-      source: '/frontend/health',
+      source: '/{{ cookiecutter.project_slug }}/health',
       destination: '/api/health'
     }
   ]
