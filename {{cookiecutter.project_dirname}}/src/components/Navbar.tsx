@@ -1,34 +1,19 @@
 import React from 'react'
-import styled from 'styled-components'
+import styles from '@/styles/navbar.module.css'
 
-import { ThemeSwitch } from '@/components/ThemeSwitch'
 import Image from 'next/image'
-import { useAppSelector } from '@/store'
 
 const Navbar = () => {
-  const theme = useAppSelector(state => state.utils.theme)
-
   return (
-    <Nav>
+    <nav className={styles.navbar}>
       <Image
-        src={`/images/logo-${theme}.svg`}
+        src={`/images/logo.svg`}
         width='110'
         height='48'
         alt={'sito logo'}
       />
-      <ThemeSwitch />
-    </Nav>
+    </nav>
   )
 }
-
-const Nav = styled.nav`
-  width: 100%;
-  background-color: ${({ theme }) => theme.colors.neutrals[100]};
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px;
-`
 
 export { Navbar }

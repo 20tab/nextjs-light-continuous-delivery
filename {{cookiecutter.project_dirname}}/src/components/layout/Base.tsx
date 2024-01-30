@@ -1,34 +1,35 @@
-import { parseCookies } from 'nookies'
-import { ThemeProvider } from 'styled-components'
-import React, { useEffect } from 'react'
+import React from 'react'
+import {
+  Open_Sans as OpenSans,
+  Hepta_Slab as HeptaSlab
+} from '@next/font/google'
 
-import { changeTheme } from '@/store/utilsSlice'
-import { GlobalStyle } from '@/styles/GlobalStyle'
 import { Navbar } from '@/components/Navbar'
-import { useAppDispatch, useAppSelector } from '@/store'
-import themes from '@/styles/themes'
+
+const baseFont = OpenSans({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-base'
+})
+
+const titleFont = HeptaSlab({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  style: ['normal'],
+  variable: '--font-title'
+})
 
 type Props = {
   children: React.ReactNode
 }
 
 const Layout = ({ children }: Props) => {
-  const dispatch = useAppDispatch()
-  const { theme } = useAppSelector(state => state.utils)
-
-  useEffect(() => {
-    const cookie = parseCookies()
-    if (cookie['THEME'] !== theme) {
-      dispatch(changeTheme(cookie['THEME']))
-    }
-  }, [dispatch, theme])
-
   return (
-    <ThemeProvider theme={themes[theme]}>
-      <GlobalStyle />
+    <div className={`${titleFont.variable} ${baseFont.variable}`}>
       <Navbar />
       {children}
-    </ThemeProvider>
+    </div>
   )
 }
 

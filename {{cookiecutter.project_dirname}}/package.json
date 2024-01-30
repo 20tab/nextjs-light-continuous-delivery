@@ -15,19 +15,13 @@
   },
   "dependencies": {
     "@next/font": "^13.4.19",
-    "@reduxjs/toolkit": "^1.9.5",
     "@sentry/nextjs": "^7.64.0",
     "basic-auth": "^2.0.1",
     "express": "^4.18.2",
     "next": "^13.4.19",
-    "nookies": "^2.5.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-is": "^18.2.0",
-    "react-redux": "^8.1.2",
-    "redux": "^4.2.1",
-    "styled-components": "^6.0.8",
-    "styled-normalize": "^8.0.7"
+    "react-is": "^18.2.0"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.4.19",
@@ -40,8 +34,6 @@
     "@types/node": "^20.5.3",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
-    "@types/react-redux": "^7.1.26",
-    "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
     "@typescript-eslint/parser": "^6.4.1",
     "eslint": "^8.48.0",
