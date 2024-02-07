@@ -7,7 +7,7 @@ const createJestConfig = nextJest({
 const customJestConfig = {
   collectCoverageFrom: [
     'src/components/**/*.{ts,tsx}',
-    'src/!components/layout/*.{ts,tsx}',
+    '!src/components/layout/*.{ts,tsx}',
   ],
   moduleNameMapper: {
     '@/(.*)$': '<rootDir>/$1'
