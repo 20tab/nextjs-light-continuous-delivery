@@ -13,7 +13,7 @@ RUN \
 COPY declarations ./declarations
 COPY public ./public
 COPY src ./src
-COPY tsconfig.json next.config.js sentry.client.config.js sentry.server.config.js middleware.ts ./
+COPY tsconfig.json next.config.js sentry.client.config.js sentry.server.config.js ./
 ARG SENTRY_AUTH_TOKEN \
   SENTRY_ORG \
   SENTRY_PROJECT_NAME \
@@ -33,7 +33,7 @@ WORKDIR /app
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 USER nextjs
-COPY ["next.config.js", "package.json", "sentry.client.config.js", "sentry.server.config.js", "server.js", "yarn.lock", "middleware.ts", "./"]
+COPY ["next.config.js", "package.json", "sentry.client.config.js", "sentry.server.config.js", "server.js", "yarn.lock", "./"]
 COPY ["public/", "public/"]
 COPY --from=build --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=build --chown=nextjs:nodejs /app/.next/static ./.next/static
