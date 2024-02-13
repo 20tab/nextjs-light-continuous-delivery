@@ -27,7 +27,6 @@ COPY --chown=$APPUSER \
     .eslintrc.json \
     .prettierrc.json \
     jest.config.js \
-    middleware.ts \
     next.config.js \
     package.json \
     tsconfig.json \
