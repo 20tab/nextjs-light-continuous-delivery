@@ -51,4 +51,4 @@ terraform.tfvars
 next-env.d.ts
 
 # robot.txt
-*/plublic/robot.txt
+*/public/robot.txt
