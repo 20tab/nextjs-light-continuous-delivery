@@ -33,7 +33,7 @@ WORKDIR /app
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 USER nextjs
-COPY ["next.config.js", "package.json", "sentry.client.config.js", "sentry.server.config.js", "server.js", "yarn.lock", "./"]
+COPY ["next.config.js", "package.json", "generate-robot-txt.js","sentry.client.config.js", "sentry.server.config.js", "yarn.lock", "./"]
 COPY ["public/", "public/"]
 COPY --from=build --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=build --chown=nextjs:nodejs /app/.next/static ./.next/static

@@ -170,4 +170,7 @@ frontend/
 # Ruff
 .ruff_cache
 
+# robot.txt
+*/plublic/robot.txt
+
 # END local
