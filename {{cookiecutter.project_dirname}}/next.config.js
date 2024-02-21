@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 
 const { withSentryConfig } = require('@sentry/nextjs')
-const generateRobotsTxt = require('./generate-robot-txt.js')
 
 const { SENTRY_AUTH_TOKEN, SENTRY_ORG, SENTRY_PROJECT_NAME, SENTRY_URL } =
   process.env
@@ -19,11 +18,7 @@ const nextjsConfig = {
       source: '/{{ cookiecutter.service_slug }}/health',
       destination: '/api/health'
     }
-  ],
-  webpack: (config, { isServer }) => {
-    if (isServer) generateRobotsTxt()
-    return config
-  }
+  ]
 }
 
 // Sentry config. For all available options, see:

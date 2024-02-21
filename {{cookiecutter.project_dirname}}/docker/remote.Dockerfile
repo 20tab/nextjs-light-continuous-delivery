@@ -25,6 +25,7 @@ ENV NEXT_TELEMETRY_DISABLED=1 \
   SENTRY_ORG=$SENTRY_ORG \
   SENTRY_PROJECT_NAME=$SENTRY_PROJECT_NAME \
   SENTRY_URL=$SENTRY_URL
+RUN yarn prebuild
 RUN yarn build
 LABEL company="20tab" project="{{ cookiecutter.project_slug }}" service="frontend" stage="build"
 

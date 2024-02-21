@@ -13,12 +13,8 @@ function generateRobotsTxt() {
  
   // Create robots.txt file
   fs.writeFileSync("public/robots.txt", robotsTxt);
- 
-  console.log(
-    `Generated a ${
-      process.env.REACT_ENVIRONMENT === "production" ? "crawlable" : "non-crawlable"
-    } public/robots.txt`
-  );
+
+  return robotsTxt;
 }
- 
+
 module.exports = generateRobotsTxt;
