@@ -49,6 +49,3 @@ terraform.tfvars
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# robot.txt
-*/public/robot.txt
