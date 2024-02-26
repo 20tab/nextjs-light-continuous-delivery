@@ -39,7 +39,7 @@ COPY ["public/", "public/"]
 COPY ./public/robots/${REACT_ENVIRONMENT}.txt ./public/robots.txt
 COPY --from=build --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=build --chown=nextjs:nodejs /app/.next/static ./.next/static
-RUN rm -rf public/robots
+RUN rm -rf public/robots/
 ARG SENTRY_AUTH_TOKEN \
   SENTRY_ORG \
   SENTRY_PROJECT_NAME \
