@@ -266,6 +266,7 @@ can-i-deploy_production:
       docker build
       --tag=${CI_REGISTRY}/${CI_PROJECT_PATH}:${VERSION_REF}
       --file=docker/remote.Dockerfile
+      --args-${REACT_ENVIRONMENT}
       --target=remote
       --pull .
     - docker push ${CI_REGISTRY}/${CI_PROJECT_PATH}:${VERSION_REF}
@@ -276,6 +277,8 @@ build_development:
   extends:
     - .development
     - .build
+  variables:
+    - REACT_ENVIRONMENT: development
   needs:
     - job: can-i-deploy_development
       optional: true
@@ -285,8 +288,10 @@ build_staging:
   extends:
     - .staging
     - .build
+  variables:
+    - REACT_ENVIRONMENT: staging
   needs:
-    - job: can-i-deploy_staging
+    - job: can-i-deploy_staging 
       optional: true
     - job: test
 
@@ -294,6 +299,8 @@ build_production:
   extends:
     - .production
     - .build
+  variables:
+    - REACT_ENVIRONMENT: production
   needs:
     - job: can-i-deploy_production
       optional: true
