@@ -258,19 +258,17 @@ can-i-deploy_production:
   image: docker:20
   services:
     - docker:20-dind
-  variables:
-    - REACT_ENVIRONMENT: ${CI_ENVIRONMENT_NAME}
   before_script:
     - export DOCKER_CONFIG=${PWD}/.dockerconfig
     - docker login --username "${CI_REGISTRY_USER}" --password "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
   script:
     - >
       docker build
-      --tag=${CI_REGISTRY}/${CI_PROJECT_PATH}:${VERSION_REF}
+      --build-arg REACT_ENVIRONMENT=${CI_ENVIRONMENT_NAME}
       --file=docker/remote.Dockerfile
-      --args-${CI_ENVIRONMENT_NAME}
-      --target=remote
       --pull .
+      --tag=${CI_REGISTRY}/${CI_PROJECT_PATH}:${VERSION_REF}
+      --target=remote
     - docker push ${CI_REGISTRY}/${CI_PROJECT_PATH}:${VERSION_REF}
   after_script:
     - docker logout ${CI_REGISTRY}

@@ -33,14 +33,12 @@ WORKDIR /app
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 USER nextjs
-ARG REACT_ENVIRONMENT
 COPY ["next.config.js", "package.json", "sentry.client.config.js", "sentry.server.config.js", "yarn.lock", "./"]
 COPY ["public/", "public/"]
-COPY ./public/robots/${REACT_ENVIRONMENT}.txt ./public/robots.txt
 COPY --from=build --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=build --chown=nextjs:nodejs /app/.next/static ./.next/static
-RUN rm -rf public/robots/
-ARG SENTRY_AUTH_TOKEN \
+ARG REACT_ENVIRONMENT \
+  SENTRY_AUTH_TOKEN \
   SENTRY_ORG \
   SENTRY_PROJECT_NAME \
   SENTRY_URL
@@ -51,5 +49,7 @@ ENV NEXT_TELEMETRY_DISABLED=1 \
   SENTRY_ORG=$SENTRY_ORG \
   SENTRY_PROJECT_NAME=$SENTRY_PROJECT_NAME \
   SENTRY_URL=$SENTRY_URL
+COPY ./public/robots/${REACT_ENVIRONMENT}.txt ./public/robots.txt
+RUN rm -rf public/robots/
 CMD yarn start
 LABEL company="20tab" project="{{ cookiecutter.project_slug }}" service="frontend" stage="remote"
