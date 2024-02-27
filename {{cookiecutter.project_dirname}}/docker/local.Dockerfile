@@ -24,5 +24,5 @@ WORKDIR $WORKDIR
 RUN chown $USER_ID:$GROUP_ID $WORKDIR
 USER $USER_ID:$GROUP_ID
 ENTRYPOINT ["./scripts/entrypoint.sh"]
-CMD yarn start
+CMD yarn dev
 LABEL company="20tab" project="{{ cookiecutter.project_slug }}" service="frontend" stage="local"
