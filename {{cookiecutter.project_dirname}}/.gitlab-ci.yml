@@ -289,7 +289,7 @@ build_staging:
     - .staging
     - .build
   needs:
-    - job: can-i-deploy_staging 
+    - job: can-i-deploy_staging
       optional: true
     - job: test
 
