@@ -266,9 +266,9 @@ can-i-deploy_production:
       docker build
       --build-arg REACT_ENVIRONMENT=${CI_ENVIRONMENT_NAME}
       --file=docker/remote.Dockerfile
-      --pull .
+      --pull
       --tag=${CI_REGISTRY}/${CI_PROJECT_PATH}:${VERSION_REF}
-      --target=remote
+      --target=remote .
     - docker push ${CI_REGISTRY}/${CI_PROJECT_PATH}:${VERSION_REF}
   after_script:
     - docker logout ${CI_REGISTRY}
