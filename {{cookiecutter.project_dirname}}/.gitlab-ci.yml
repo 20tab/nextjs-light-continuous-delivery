@@ -258,6 +258,8 @@ can-i-deploy_production:
   image: docker:20
   services:
     - docker:20-dind
+  variables:
+    - REACT_ENVIRONMENT: ${CI_ENVIRONMENT_NAME}
   before_script:
     - export DOCKER_CONFIG=${PWD}/.dockerconfig
     - docker login --username "${CI_REGISTRY_USER}" --password "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
@@ -266,7 +268,7 @@ can-i-deploy_production:
       docker build
       --tag=${CI_REGISTRY}/${CI_PROJECT_PATH}:${VERSION_REF}
       --file=docker/remote.Dockerfile
-      --args-${REACT_ENVIRONMENT}
+      --args-${CI_ENVIRONMENT_NAME}
       --target=remote
       --pull .
     - docker push ${CI_REGISTRY}/${CI_PROJECT_PATH}:${VERSION_REF}
@@ -277,8 +279,6 @@ build_development:
   extends:
     - .development
     - .build
-  variables:
-    - REACT_ENVIRONMENT: development
   needs:
     - job: can-i-deploy_development
       optional: true
@@ -288,8 +288,6 @@ build_staging:
   extends:
     - .staging
     - .build
-  variables:
-    - REACT_ENVIRONMENT: staging
   needs:
     - job: can-i-deploy_staging 
       optional: true
@@ -299,8 +297,6 @@ build_production:
   extends:
     - .production
     - .build
-  variables:
-    - REACT_ENVIRONMENT: production
   needs:
     - job: can-i-deploy_production
       optional: true
