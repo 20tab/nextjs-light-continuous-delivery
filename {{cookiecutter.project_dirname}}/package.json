@@ -10,6 +10,7 @@
     "e2e": "CYPRESS_BASE_URL=http://localhost:3000 cypress open",
     "lint": "next lint",
     "dev": "next dev",
+    "start": "next start",
     "pact": "npx jest pact/contracts --testEnvironment=node --detectOpenHandles",
     "test": "npx jest --testPathIgnorePatterns=pact/contracts --detectOpenHandles"
   },
