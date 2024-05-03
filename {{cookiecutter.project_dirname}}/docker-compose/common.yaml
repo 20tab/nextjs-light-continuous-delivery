@@ -1,7 +1,4 @@
-version: "3.9"
-
 services:
-
   proxy:
     command:
       - "--configFile=/traefik/conf/static.yaml"
